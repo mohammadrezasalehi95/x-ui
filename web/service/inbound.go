@@ -2,12 +2,13 @@ package service
 
 import (
 	"fmt"
-	"gorm.io/gorm"
 	"time"
 	"x-ui/database"
 	"x-ui/database/model"
 	"x-ui/util/common"
 	"x-ui/xray"
+
+	"gorm.io/gorm"
 )
 
 type InboundService struct {
@@ -154,8 +155,8 @@ func (s *InboundService) AddTraffic(traffics []*xray.Traffic) (err error) {
 	for _, traffic := range traffics {
 		if traffic.IsInbound {
 			err = tx.Where("tag = ?", traffic.Tag).
-				UpdateColumn("up", gorm.Expr("up + ?", traffic.Up)).
 				UpdateColumn("down", gorm.Expr("down + ?", traffic.Down)).
+				UpdateColumn("up", gorm.Expr("up + ?", traffic.Up)).
 				Error
 			if err != nil {
 				return
