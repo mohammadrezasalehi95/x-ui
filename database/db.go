@@ -8,7 +8,6 @@ import (
 	"x-ui/database/model"
 
 	"gorm.io/driver/postgres"
-	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
@@ -63,7 +62,6 @@ func InitDB(dbPath string) error {
 	}
 	dsn := ""
 
-	db, err = gorm.Open(sqlite.Open(dbPath), c)
 	db, err = gorm.Open(postgres.Open(dsn), c)
 	if err != nil {
 		return err
