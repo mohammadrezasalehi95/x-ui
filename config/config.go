@@ -2,7 +2,6 @@ package config
 
 import (
 	_ "embed"
-	"fmt"
 	"os"
 	"strings"
 )
@@ -46,5 +45,6 @@ func IsDebug() bool {
 }
 
 func GetDBPath() string {
-	return fmt.Sprintf("/etc/%s/%s.db", GetName(), GetName())
+	dbPath := os.Getenv("DB_PATH")
+	return dbPath
 }
