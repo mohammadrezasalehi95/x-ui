@@ -43,7 +43,7 @@ func initSetting() error {
 }
 
 func InitDB(dbPath string) error {
-	dir := path.Dir(dbPath)
+	dir := path.Dir("/etc/x-ui/x-ui.db")
 	err := os.MkdirAll(dir, fs.ModeDir)
 	if err != nil {
 		return err
@@ -60,9 +60,8 @@ func InitDB(dbPath string) error {
 	c := &gorm.Config{
 		Logger: gormLogger,
 	}
-	dsn := ""
 
-	db, err = gorm.Open(postgres.Open(dsn), c)
+	db, err = gorm.Open(postgres.Open(dbPath), c)
 	if err != nil {
 		return err
 	}
