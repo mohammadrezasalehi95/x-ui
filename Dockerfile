@@ -4,7 +4,7 @@ COPY . .
 RUN go build main.go
 
 
-FROM debian:bullseye-20230202-slim
+FROM ubuntu:focal
 RUN apt-get update && apt-get install -y --no-install-recommends -y ca-certificates \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 WORKDIR /root
